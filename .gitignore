@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs.db
+bin/
+obj/
+gen/
+*.class

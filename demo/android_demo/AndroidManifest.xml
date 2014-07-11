@@ -1,0 +1,53 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.pushimpdemo"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="10" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity android:name=".MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <service android:name="com.cobub.toaster.push.component.PushService" >
+            <intent-filter>
+                <action android:name="com.cobub.toaster.push.SYNC" />
+            </intent-filter>
+        </service>
+        <receiver 
+            android:name=".DemoReceiver">
+            <intent-filter >
+                <action android:name="com.example.pushimpdemo"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="com.cobub.toaster.push.component.CPushReceiver"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="com.cobub.toaster.push.LCHCMD"/>
+            </intent-filter>
+        </receiver>
+        <activity android:name="com.cobub.toaster.push.component.BrowserAct"></activity>
+        <service android:name="com.cobub.toaster.push.component.DownloadService"></service>
+    </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+</manifest>
